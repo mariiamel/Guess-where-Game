@@ -58,5 +58,6 @@ You found only 2 items of 3 on 5th level and run out of attempts - lost the game
 Add:
 * Levels
 * Boxes
+* Items to guess
 * Attempts
 * reduce time on timer
