@@ -1,0 +1,69 @@
+body {
+    text-align: center;
+    font-family: 'Concert One', cursive;
+}
+
+.mainInfo, 
+.startOver{
+    background-color: #E6E6FA;
+    border: 1px solid black;
+}
+
+.timerAndLevel{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+p{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.startOver{
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+    font-family: 'Concert One', cursive;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 13px;
+}
+
+img{
+    width: 200px;
+    height: 150px;
+}
+
+.game-box{
+    display: inline-block;
+    margin: 10px;
+}
+
+.amountItemsToGuess{
+    display: inline-block;
+    margin: 10px;
+}
+
+.message{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin: 15px;
+}
+
+button:hover{
+    background-color: thistle;
+}
+.guessedItems {
+    display: flex;
+    justify-content: space-around;
+    visibility: hidden;
+}
+
+.apple{
+    background-image: url('img/apple.png');
+}

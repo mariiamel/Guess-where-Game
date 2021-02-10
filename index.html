@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <title>Guess-where Game</title>
+</head>
+<body>
+    <div class="mainInfo">
+        <div class="timerAndLevel">
+            <p class="timer">Timer:00:30</p>
+            <p class="level">Level:1</p>
+        </div>
+        <p class="attempts">You have 2 attempts</p>
+        <p class="amountItemsToGuess">Items to guess:1</p>
+    </div>
+
+    <div class="message">Guess where is apple?</div>
+
+    <div class="game-box">
+        <div class="guessedItems">
+            <div class="itemsToGuess">0</div>
+            <div class="itemsToGuess">1</div>
+            <div class="itemsToGuess">2</div>
+        </div>
+        
+        <img id="box-0" class="box" src="./img/closed-box.png"/>
+        <img id="box-1" class="box" src="./img/closed-box.png"/>
+        <img id="box-2" class="box" src="./img/closed-box.png"/>
+    </div>
+
+    <button class="startOver">Start Over</button>
+    <script src="app.js"></script>
+</body>
+</html>
