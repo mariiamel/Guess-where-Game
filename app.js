@@ -1,4 +1,3 @@
-console.log('hey');
 
 //Actions:
 
@@ -12,15 +11,14 @@ console.log('hey');
 // 8- shuffle items to guess in initilize game funct(math.floor(math.random))
 
 
-
 //event list/funct:
 
 // endGame funct
 // wonGame funct
 // Initilize game funct
+// chosing box function
 // Start over funct
-// update clock
-
+// Update clock
 
 
 /* Constants */
@@ -35,11 +33,11 @@ let itemsToGuess = [
     'img/banana.png',
     'img/orange.png'
 ] 
+
 //variable to store items to guess
 // let placeToHideArr = allPlacesToHide.map(function(placeToHide) {
-
 // })
-
+let placeToHide = null;
 
 /* Game Logic Variables and State */
 
@@ -51,13 +49,12 @@ let countdown = null
 //boolean for gameOver
 let gameOver = false
 
+//variab for each lvl
 let currentLevel = 0;
 let currentAttempts = 0;
 let currentBoxesPerLevel = 0;
 let currentItemsToGuess = 0;
 let currentAmountItemsToGuess = 0;
-
-let placeToHide = null;
 
 
 /* DOM References */
@@ -66,7 +63,8 @@ let guessedItemsDiv = document.querySelector('.guessedItems');
 let startOverButton = document.querySelector('.startOver');
 let mainMessage = document.querySelector('.message');
 let attemptsMsg = document.querySelector('.attempts');
-let timer = document.querySelector('.timer');
+let levelMsg = document.querySelector('.level');
+let timerMsg = document.querySelector('.timer');
 let boxes = document.querySelectorAll('.box');
 let boxContainer = document.querySelector('.box-container');
 
@@ -75,11 +73,12 @@ let boxContainer = document.querySelector('.box-container');
 
 //timer function
 function updateClock() {
-    timeRemaining -= 1;
     if(timeRemaining <= 0) {
         endGame(false);
+    } else {
+        timeRemaining -= 1;
     }
-    timer.textContent = `Timer:00: ${timeRemaining}`;
+    timerMsg.textContent = `Timer:00: ${timeRemaining}`;
 }
 
 // End game function
@@ -94,16 +93,16 @@ function initialize() {
     timeRemaining = INITIAL_TIME;
     countdown = setInterval(updateClock, 1000)
     let newTimer = document.createElement('p')
-    timer.appendChild(newTimer);
-    timer.innerText = `Timer:00: ${timeRemaining}`
+    timerMsg.appendChild(newTimer);
+    timerMsg.innerText = `Timer:00: ${timeRemaining}`
     gameOver = false;
     currentLevel = level[0];
     currentAttempts = attempts[0];
     currentBoxesPerLevel = boxesPerLevel[0];
     currentAmountItemsToGuess = amountItemsToGuess[0];
     //innerText for attempts
-    let newAttempts = document.createElement('p')
-    attemptsMsg.appendChild(newAttempts);
+    // let newAttempts = document.createElement('p')
+    // attemptsMsg.appendChild(newAttempts);
     attemptsMsg.innerText = `You have ${currentAttempts} attempts`
     //return img of closed box
     boxes.forEach(box => box.src = 'img/closed-box.png')
@@ -133,39 +132,40 @@ function choseBox(e) {
     e.target.id.innerText = boxId;
     console.log(boxId);
     console.log('placeToHide', placeToHide);
-    // const boxId = e.target.id.replace('card-', '')
-    // const idNum = parseInt(boxId)
-    // e.target.innerText = boxes[idNum]
-
-    let attemptP = document.createElement('p')
-    attemptsMsg.appendChild(attemptP)
     attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-    // console.log(currentAttempts)
-    if (currentAttempts == 0) {
-        console.log('game Over')
-        endGame()
-    } else if (timeRemaining == 0) {
+    if (timeRemaining == 0) {
         console.log('game Over')
         endGame()
     }
     //match them here
     //if pass the condit ==> go to next level
-    if (boxId == placeToHide) {
-        console.log('heyyyyy')
-        
+    if (currentLevel == level[0]){
+    if (boxId == placeToHide) {      
         let rightId = document.querySelector('#place' + placeToHide);
         console.log(rightId);
         let apple = document.createElement('img');
         apple. src = 'img/apple.png';
         rightId.appendChild(apple);
-        
         mainMessage.innerText = `Good job! You found it!`
-        secondLevel()
-    } else if(currentAttempts === 0){
+        
+        setTimeout(secondLevel, 1500);
+    } else if(currentAttempts === 0 && boxId !== placeToHide){
         endGame();
     } 
+    } else if (currentLevel == level[1]){
+        if (boxId == placeToHide) {      
+            rightId = document.querySelector('#place' + placeToHide);
+            console.log(rightId);
+            let banana = document.createElement('img');
+            banana. src = 'img/banana.png';
+            rightId.appendChild(banana);
+            mainMessage.innerText = `Good job! You found it!`
+            setTimeout(thirdLevel, 1500);
+        } else if(currentAttempts === 0 && boxId !== placeToHide){
+            endGame();
+        } 
+    }
 }
-
 
 
 function firstLevel() {
@@ -177,14 +177,61 @@ function firstLevel() {
         console.log('placeToHide', placeToHide);
     }
 
+// Second lvl plan:
+// set interval
+// remove guessed items
+// close boxes
+// update lvl, attempts and time
+// change mainMsg
+// CreateElement <did> for newBox
+// append it to box container
+// give a class(box) and id(box-3) and src="./img/closed" to newBox element
+// slice an id
+// compare id and place to hide
+
 function secondLevel() {
-        currentAttempts = attempts[1];
-        currentBoxesPerLevel = boxesPerLevel[1];
-        currentAmountItemsToGuess = amountItemsToGuess[1];
-        // mainMessage.innerText = `Guess where is banana?`
-        placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
-        console.log('placeToHide',placeToHide);
+    clearInterval(countdown);
+    timeRemaining = INITIAL_TIME;
+    countdown = setInterval(updateClock, 1000)
+
+    let items = document.querySelectorAll('.itemsToGuess');
+    for (guessedItems of items) {
+        console.log(guessedItems)
+        guessedItems.classList.add('hidden');
     }
+    guessedItems.classList.remove('hidden');
+
+    currentAttempts = attempts[1];
+    currentLevel = level[1];
+    currentBoxesPerLevel = boxesPerLevel[1];
+    currentAmountItemsToGuess = amountItemsToGuess[1];
+    // let attemptP = document.createElement('p')
+    // attemptsMsg.appendChild(attemptP)
+    attemptsMsg.innerText = `You have ${currentAttempts} attempts`;
+    mainMessage.innerText = `Guess where is banana?`
+    levelMsg.innerText = `Level: ${currentLevel}`
+    
+    //create newBox
+    let fourthBox = document.createElement('img');
+    fourthBox.className = 'box';
+    fourthBox.id = 'box-3';
+    boxContainer.appendChild(fourthBox);
+    boxes = document.querySelectorAll('.box');
+    console.log(boxes)
+    // boxes.push(thirdBox);
+    fourthBox.addEventListener('click', choseBox)
+    boxes.forEach(box => box.src = 'img/closed-box.png')
+    
+
+    //newPlaceTo Hide
+    let thirdPlaceToHide = document.createElement('div');
+    thirdPlaceToHide.className = 'itemsToGuess';
+    thirdPlaceToHide.id = 'place3';
+    guessedItemsDiv.appendChild(thirdPlaceToHide);
+
+    placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
+    console.log('placeToHide',placeToHide);
+}
 
 function thirdLevel() {
         currentAttempts = attempts[2];
@@ -217,7 +264,7 @@ function fifthLevel() {
 function wonGame() {
     let wonGameMsg = document.querySelector('h2');
     mainMessage.appendChild(wonGameMsg);
-    mainMessage.innerText = `You won!`;
+    mainMessage.innerText = `Congratulations! You won!`;
 }
 
 //startOver button funct

@@ -63,4 +63,6 @@ button:hover{
     justify-content: space-between;
     height: 150px;
 }
-
+.hidden{
+    display: none;
+}
