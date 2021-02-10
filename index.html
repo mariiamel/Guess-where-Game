@@ -20,16 +20,20 @@
     <div class="message">Guess where is apple?</div>
 
     <div class="game-box">
-        <div class="guessedItems">
-            <div class="itemsToGuess">0</div>
-            <div class="itemsToGuess">1</div>
-            <div class="itemsToGuess">2</div>
-        </div>
         
+        <div class="guessedItems">
+            <div id="place0" class="itemsToGuess"></div>
+            <div id="place1" class="itemsToGuess"></div>
+            <div id="place2" class="itemsToGuess"></div>
+        </div>
+
+        <div class="box-container">
         <img id="box-0" class="box" src="./img/closed-box.png"/>
         <img id="box-1" class="box" src="./img/closed-box.png"/>
         <img id="box-2" class="box" src="./img/closed-box.png"/>
+        </div>
     </div>
+
 
     <button class="startOver">Start Over</button>
     <script src="app.js"></script>

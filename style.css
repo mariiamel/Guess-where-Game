@@ -60,10 +60,7 @@ button:hover{
 }
 .guessedItems {
     display: flex;
-    justify-content: space-around;
-    visibility: hidden;
+    justify-content: space-between;
+    height: 150px;
 }
 
-.apple{
-    background-image: url('img/apple.png');
-}

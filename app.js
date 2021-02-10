@@ -62,13 +62,13 @@ let placeToHide = null;
 
 /* DOM References */
 let allPlacesToHide = document.querySelectorAll('.itemsToGuess');
+let guessedItemsDiv = document.querySelector('.guessedItems');
 let startOverButton = document.querySelector('.startOver');
-// let level = document.querySelector('.level');
 let mainMessage = document.querySelector('.message');
 let attemptsMsg = document.querySelector('.attempts');
 let timer = document.querySelector('.timer');
 let boxes = document.querySelectorAll('.box');
-
+let boxContainer = document.querySelector('.box-container');
 
 
 /* Functions and Game Logic */
@@ -151,24 +151,19 @@ function choseBox(e) {
     //match them here
     //if pass the condit ==> go to next level
     if (boxId == placeToHide) {
-        // placeToHide.classList.add(apple);
+        console.log('heyyyyy')
+        
+        let rightId = document.querySelector('#place' + placeToHide);
+        console.log(rightId);
         let apple = document.createElement('img');
-        placeToHide.appendChild(apple);
-        placeToHide.innerText = itemsToGuess[0];
+        apple. src = 'img/apple.png';
+        rightId.appendChild(apple);
+        
         mainMessage.innerText = `Good job! You found it!`
         secondLevel()
-    } else {
+    } else if(currentAttempts === 0){
         endGame();
-    }
-    if (boxId == placeToHide) {
-        let banana = document.createElement('img');
-        placeToHide.appendChild(banana);
-        placeToHide.innerText = itemsToGuess[1];
-        mainMessage.innerText = `Good job! You found it!`
-        thirdLevel()
-    } else {
-        endGame();
-    }
+    } 
 }
 
 
@@ -186,7 +181,7 @@ function secondLevel() {
         currentAttempts = attempts[1];
         currentBoxesPerLevel = boxesPerLevel[1];
         currentAmountItemsToGuess = amountItemsToGuess[1];
-        mainMessage.innerText = `Guess where is banana?`
+        // mainMessage.innerText = `Guess where is banana?`
         placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
         console.log('placeToHide',placeToHide);
     }
@@ -227,6 +222,10 @@ function wonGame() {
 
 //startOver button funct
 function startOverFunct() {
+    while(guessedItemsDiv.firstChild) {
+        guessedItemsDiv.removeChild(guessedItemsDiv.firstChild);
+    }
+    boxes.forEach(box => box.addEventListener('click', choseBox))
     clearInterval(countdown);
     initialize()
 }
