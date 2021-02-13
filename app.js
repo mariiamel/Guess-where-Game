@@ -144,7 +144,6 @@ nextLevel = () => {
             currentLevel += 1;
             placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
             console.log('placeToHide',placeToHide);
-    // }
 }
 
 //function chosing the box
@@ -238,6 +237,7 @@ removeFruit = () => {
 
 //startOver button funct
 startOverFunct = () => {
+    location.reload();
     //remove aditional boxes
     // clearBoxes()
     initialize()
