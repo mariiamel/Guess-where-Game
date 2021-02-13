@@ -24,7 +24,6 @@ let currentBoxesPerLevel = 0;
 let currentItemsToGuess = 0;
 let currentAmountItemsToGuess = 0;
 
-
 /* DOM References */
 let allPlacesToHide = document.querySelectorAll('.itemsToGuess');
 let guessedItemsDiv = document.querySelector('.guessedItems');
