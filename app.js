@@ -10,7 +10,7 @@ let placeToHide = null;
 //boolean for gameOver
 let gameOver = false
 
-let level = [0, 1, 2, 3, 4];
+let level = [0, 1, 2, 3, 4, 5];
 let attempts = [2, 2, 2, 3, 3];
 let boxesPerLevel = [3, 4, 4, 5, 5];
 let amountItemsToGuess = [1, 1, 2, 2, 3];
@@ -38,26 +38,29 @@ let boxContainer = document.querySelector('.box-container');
 
 
 //initial view in browser
-function initialize() {
-    // currentLevel = level[0];
-    // currentBoxesPerLevel = boxesPerLevel[0];
-    // console.log(currentLevel);
+initialize = () => {
+    currentLevel = level[0];
+    currentBoxesPerLevel = boxesPerLevel[0];
     boxes.forEach(box => box.addEventListener('click', choseBox))
+    mainMessage.classList.remove('redText');
+    mainMessage.classList.remove('greenText');
     gameOver = false;
     nextLevel();
 }
 
 //lists all levels(with contitions on each lvl)
-function nextLevel () {
+nextLevel = () => {
     clearInterval(countdown);
     timeRemaining = INITIAL_TIME;
     countdown = setInterval(updateClock, 1000)
     timerMsg.innerText = `Timer:00: ${timeRemaining}`
-    levelMsg.innerText = `Level: ${currentLevel + 1}`
+    if (!gameOver) {
+        levelMsg.innerText = `Level: ${currentLevel + 1}`
+    }
 
     boxes.forEach(box => box.src = 'img/closed-box.png')
     removeFruit();
-    // console.log(currentLevel);
+    
     currentAttempts = attempts[currentLevel];
     currentBoxesPerLevel = boxesPerLevel[currentLevel];
     currentAmountItemsToGuess = amountItemsToGuess[currentLevel];
@@ -139,12 +142,10 @@ function nextLevel () {
             fifhPlaceToHide.id = 'place5';
             guessedItemsDiv.appendChild(fifhPlaceToHide);
         }
-
-        // for(let j = 0; j < level.length; j++){
             currentLevel += 1;
             placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
             console.log('placeToHide',placeToHide);
-        // }
+    // }
 }
 
 //function chosing the box
@@ -157,7 +158,7 @@ function choseBox(e) {
     console.log(boxId);
     // console.log('placeToHide', placeToHide);
     attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-
+    
     if (timeRemaining == 0) {
         console.log('game Over')
         endGame()
@@ -165,56 +166,64 @@ function choseBox(e) {
     else if (boxId == placeToHide) {      
         let rightId = document.querySelector('#place' + placeToHide);
         // console.log(rightId);
+        console.log(currentLevel);
         
-    if (currentLevel == level[1]){
-        let apple = document.createElement('img');
-        apple.className = 'fruitImg';
-        apple. src = 'img/apple.png';
-        rightId.appendChild(apple);
-    } else  if (currentLevel == level[2]){
-        let banana = document.createElement('img');
-            banana. src = 'img/banana.png';
-            banana.className = 'fruitImg';
-            rightId.appendChild(banana);
-    } else  if (currentLevel == level[3]){
-        let newBanana = document.createElement('img');
-            newBanana. src = 'img/banana.png';
-            newBanana.className = 'fruitImg';
-            rightId.appendChild(newBanana);
-        let orange = document.createElement('img');
-            orange. src = 'img/orange.png';
-            orange.className = 'fruitImg';
-            rightId.appendChild(orange);
-    } else  if (currentLevel == level[4]){
-        let newApple = document.createElement('img');
-            newApple. src = 'img/apple.png';
-            newApple.className = 'fruitImg';
-            rightId.appendChild(newApple);
-        let newOrange = document.createElement('img');
-            newOrange. src = 'img/orange.png';
-            newOrange.className = 'fruitImg';
-            rightId.appendChild(newOrange);
-    } else  if (currentLevel == level[5]){
-        let newApple2 = document.createElement('img');
-            newApple2. src = 'img/apple.png';
-            newApple2.className = 'fruitImg';
-            rightId.appendChild(newApple2);
-        let newBanana2 = document.createElement('img');
-            newBanana2. src = 'img/banana.png';
-            newBanana2.className = 'fruitImg';
-            rightId.appendChild(newBanana2);
-        let newOrange2 = document.createElement('img');
-            newOrange2. src = 'img/orange.png';
-            newOrange2.className = 'fruitImg';
-            rightId.appendChild(newOrange2);
-    }
-        mainMessage.innerText = `Good job! You found it!`
+            if (currentLevel == level[1]){
+                let apple = document.createElement('img');
+                apple.className = 'fruitImg';
+                apple. src = 'img/apple.png';
+                rightId.appendChild(apple);
+            } else  if (currentLevel == level[2]){
+                let banana = document.createElement('img');
+                    banana. src = 'img/banana.png';
+                    banana.className = 'fruitImg';
+                    rightId.appendChild(banana);
+            } else  if (currentLevel == level[3]){
+                let newBanana = document.createElement('img');
+                    newBanana. src = 'img/banana.png';
+                    newBanana.className = 'fruitImg';
+                    rightId.appendChild(newBanana);
+                let orange = document.createElement('img');
+                    orange. src = 'img/orange.png';
+                    orange.className = 'fruitImg';
+                    rightId.appendChild(orange);
+            } else  if (currentLevel == level[4]){
+                let newApple = document.createElement('img');
+                    newApple. src = 'img/apple.png';
+                    newApple.className = 'fruitImg';
+                    rightId.appendChild(newApple);
+                let newOrange = document.createElement('img');
+                    newOrange. src = 'img/orange.png';
+                    newOrange.className = 'fruitImg';
+                    rightId.appendChild(newOrange);
+            } else  if (currentLevel == level[5]){
+                let newApple2 = document.createElement('img');
+                    newApple2. src = 'img/apple.png';
+                    newApple2.className = 'fruitImg';
+                    rightId.appendChild(newApple2);
+                let newBanana2 = document.createElement('img');
+                    newBanana2. src = 'img/banana.png';
+                    newBanana2.className = 'fruitImg';
+                    rightId.appendChild(newBanana2);
+                let newOrange2 = document.createElement('img');
+                    newOrange2. src = 'img/orange.png';
+                    newOrange2.className = 'fruitImg';
+                    rightId.appendChild(newOrange2);
+            }
+        //message condition
+        if (currentLevel !== level[5]){
+            mainMessage.innerText = `Good job! You found it!`
+            // setTimeout(nextLevel, 1500);
+        } else {
+            wonGame()
+        }
+        
         setTimeout(nextLevel, 1500);
     
-    } else if (currentAttempts === 0 && boxId !== placeToHide) {
-        console.log('game Over')
-        endGame()
-    }
+            } else if (currentAttempts === 0 && boxId !== placeToHide) {
+                console.log('game Over')
+                endGame()
+            }
 }
  
 removeFruit = () => {
@@ -232,7 +241,6 @@ removeFruit = () => {
 startOverFunct = () => {
     //remove aditional boxes
     // clearBoxes()
-    mainMessage.classList.remove('redText');
     initialize()
 }
 
@@ -255,6 +263,14 @@ updateClock = () => {
     timerMsg.textContent = `Timer:00: ${timeRemaining}`;
 }
 
+//wonGame Fun
+ wonGame = () => {
+    mainMessage.innerText = `You won this Game! Click 'Start Over' to play again.`
+    mainMessage.classList.add('greenText');
+    boxes.forEach(box => box.removeEventListener('click', choseBox))
+    gameOver = true;
+ }
+
 // End game function
 endGame = () => {
     mainMessage.classList.add('redText');
@@ -262,7 +278,6 @@ endGame = () => {
     boxes.forEach(box => box.removeEventListener('click', choseBox))
     gameOver = true;
 }
-
 
 /* Event Listeners */
 startOverButton.addEventListener('click', startOverFunct)
