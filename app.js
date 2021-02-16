@@ -5,10 +5,10 @@ const INITIAL_TIME = 30;
 let timeRemaining = 0
 // store our timer's setInterval so we can clear it
 let countdown = null
-//variable to store items to guess
+//variables to store items to guess
 let placeToHide = null;
 let placeToHide2 = null;
-let placeToHide3 =null;
+let placeToHide3 = null;
 //boolean for gameOver
 let gameOver = false
 
@@ -91,13 +91,13 @@ nextLevel = () => {
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide2();
+            // randomPlaceToHide();
             
         } else  if (currentLevel === level[3]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]}?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide2();
+            // randomPlaceToHide();
 
             //create newBox
             let fifthBox = document.createElement('img');
@@ -118,8 +118,8 @@ nextLevel = () => {
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[0]} , ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide2();
-            // randomPlaceToHide3();
+            // randomPlaceToHide();
+            // randomPlaceToHide();
 
             // create newBox
             let sixthBox = document.createElement('img');
@@ -151,21 +151,17 @@ function choseBox(e) {
 
     if (boxId == placeToHide) {      
         let rightId = document.querySelector('#place' + placeToHide);
-    // } else if (boxId == placeToHide2) {      
-    //     let rightId2 = document.querySelector('#place' + placeToHide2);
-    // } else if (boxId == placeToHide3) {      
-    //     let rightId3 = document.querySelector('#place' + placeToHide3);    
-        
+    
     if (currentLevel == level[1]){
         rightId.appendChild(apple);
-
+        console.log(rightId);
         } else  if (currentLevel == level[2]){
             rightId.appendChild(banana);
-
+            console.log(rightId);
             } else  if (currentLevel == level[3]){
                 rightId.appendChild(banana2);
                 rightId.appendChild(orange);
-
+                console.log(rightId);
                 } else  if (currentLevel == level[4]){
                     rightId.appendChild(newApple);
                     rightId.appendChild(newOrange);
@@ -184,6 +180,70 @@ function choseBox(e) {
             endGame()
         }
 }
+
+// //function chosing the box
+// function choseBox(e) {
+//     e.target.src = 'img/opened-box.png';
+//     currentAttempts -= 1; 
+//     attemptsMsg.innerText = `You have ${currentAttempts} attempts`;
+    
+//     let boxId = e.target.id.slice(-1);
+//     e.target.id.innerText = boxId;
+
+
+//         if (currentLevel == level[1]){
+//             if (boxId == placeToHide) {      
+//                 let rightId = document.querySelector('#place' + placeToHide);
+//                 rightId.appendChild(apple);
+//             } setTimeout(nextLevel, 1500);
+
+//          } else  if (currentLevel == level[2]){
+//             if (boxId == placeToHide) {      
+//                 rightId = document.querySelector('#place' + placeToHide);
+//                 rightId.appendChild(banana);
+//             } setTimeout(nextLevel, 1500);
+
+//                 } else if (currentLevel == level[3]){
+//                     if (boxId == placeToHide) {      
+//                         rightId = document.querySelector('#place' + placeToHide);
+//                         rightId.appendChild(banana2);
+//                         if (boxId == placeToHide2) {      
+//                             let rightId2 = document.querySelector('#place' + placeToHide2);
+//                             rightId2.appendChild(orange);
+//                         } setTimeout(nextLevel, 1500);
+//                     }
+//                 } else  if (currentLevel == level[4]){
+//                     if (boxId == placeToHide) {      
+//                         rightId = document.querySelector('#place' + placeToHide);
+//                         rightId.appendChild(newApple);
+//                             if (boxId == placeToHide2) {      
+//                                 rightId2 = document.querySelector('#place' + placeToHide2);    
+//                                 rightId2.appendChild(newOrange);
+//                             } setTimeout(nextLevel, 1500);
+//                         }
+//                     } else if (currentLevel == level[5]) {
+//                         if (boxId == placeToHide) {      
+//                             rightId = document.querySelector('#place' + placeToHide);      
+//                             rightId.appendChild(newApple2);
+//                             if (boxId == placeToHide2) {      
+//                                 rightId2 = document.querySelector('#place' + placeToHide2); 
+//                                 rightId2.appendChild(newBanana2);
+//                                 if (boxId == placeToHide3){
+//                                     let rightId3 = document.querySelector('#place' + placeToHide3);    
+//                                     rightId3.appendChild(newOrange2);
+//                                 }
+//                             }
+//                         } 
+//         //message condition
+//         currentLevel !== level[5] ? mainMessage.innerText = `Good job! You found it!` : wonGame();
+//         //if passed conditions above--> go to next lvl
+//         // setTimeout(nextLevel, 1500);
+
+//         //endGame conditions
+//         } else if (timeRemaining == 0 || currentAttempts === 0 && boxId !== placeToHide) {
+//             endGame()
+//         }
+// }
 
  randomPlaceToHide = () => {
     placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
