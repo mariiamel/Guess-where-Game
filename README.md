@@ -46,11 +46,11 @@ You found only 2 items of 3 on 5th level and run out of attempts - lost the game
 
   Level | Items to guess |  Boxes | Attempts
 --------|----------------|--------|----------
-1 level	|       1	     |    3   |    2
-2 level	|       1	     |    4   |    2
-3 level	|       2	     |    4   |    2
-4 level	|       2	     |    5   |    3
-5 level	|       3	     |    5   |    3
+1 level	|       1	       |    3   |    2
+2 level	|       1	       |    4   |    2
+3 level	|       2	       |    4   |    2
+4 level	|       2	       |    5   |    3
+5 level	|       3	       |    6   |    3  
 
 
 
@@ -60,4 +60,4 @@ Add:
 * Boxes
 * Items to guess
 * Attempts
-* reduce time on timer
+* Reduce time on timer
