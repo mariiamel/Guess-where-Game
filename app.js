@@ -294,27 +294,13 @@ endGame = () => {
 //startOver button funct
 startOverFunct = () => {
     location.reload();
-    //remove aditional boxes
-    // clearBoxes()
     initialize()
 }
-
-// clearBoxes = () => {
-//     let box3ToRemove = document.getElementById('box-3');
-//     boxContainer.parentNode.removeChild(box3ToRemove);
-//     let box4ToRemove = document.getElementById('box-4');
-//     boxContainer.parentNode.removeChild(box4ToRemove);
-//     let box5ToRemove = document.getElementById('box-5');
-//     boxContainer.parentNode.removeChild(box5ToRemove);
-// }
-
 
 /* Event Listeners */
 startOverButton.addEventListener('click', startOverFunct)
 document.addEventListener('DOMContentLoaded', initialize)
 boxes.forEach(box => box.addEventListener('click', choseBox))
-
-
 
 
 let apple = document.createElement('img');
