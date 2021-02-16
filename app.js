@@ -91,13 +91,13 @@ nextLevel = () => {
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide();
+            // randomPlaceToHide2();
             
         } else  if (currentLevel === level[3]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]}?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide();
+            // randomPlaceToHide2();
 
             //create newBox
             let fifthBox = document.createElement('img');
@@ -118,8 +118,8 @@ nextLevel = () => {
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[0]} , ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
             // randomPlaceToHide();
-            // randomPlaceToHide();
-            // randomPlaceToHide();
+            // randomPlaceToHide2();
+            // randomPlaceToHide3();
 
             // create newBox
             let sixthBox = document.createElement('img');
