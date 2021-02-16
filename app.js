@@ -121,7 +121,7 @@ nextLevel = () => {
             // randomPlaceToHide2();
             // randomPlaceToHide3();
 
-            //create newBox
+            // create newBox
             let sixthBox = document.createElement('img');
             sixthBox.id = 'box-5';
             sixthBox.className = 'box';
@@ -154,50 +154,27 @@ function choseBox(e) {
     // } else if (boxId == placeToHide2) {      
     //     let rightId2 = document.querySelector('#place' + placeToHide2);
     // } else if (boxId == placeToHide3) {      
-    //     let rightId3 = document.querySelector('#place' + placeToHide3);
+    //     let rightId3 = document.querySelector('#place' + placeToHide3);    
         
-        if (currentLevel == level[1]){
-            let apple = document.createElement('img');
-            apple.className = 'fruitImg';
-            apple. src = 'img/apple.png';
-            rightId.appendChild(apple);
-            } else  if (currentLevel == level[2]){
-                let banana = document.createElement('img');
-                banana. src = 'img/banana.png';
-                banana.className = 'fruitImg';
-                rightId.appendChild(banana);
-                } else  if (currentLevel == level[3]){
-                    let newBanana = document.createElement('img');
-                    newBanana. src = 'img/banana.png';
-                    newBanana.className = 'fruitImg';
-                    rightId.appendChild(newBanana);
-                    let orange = document.createElement('img');
-                    orange. src = 'img/orange.png';
-                    orange.className = 'fruitImg';
-                    rightId.appendChild(orange);
-                        } else  if (currentLevel == level[4]){
-                            let newApple = document.createElement('img');
-                            newApple. src = 'img/apple.png';
-                            newApple.className = 'fruitImg';
-                            rightId.appendChild(newApple);
-                            let newOrange = document.createElement('img');
-                            newOrange. src = 'img/orange.png';
-                            newOrange.className = 'fruitImg';
-                            rightId.appendChild(newOrange);
-                                } else  if (currentLevel == level[5]){
-                                    let newApple2 = document.createElement('img');
-                                    newApple2. src = 'img/apple.png';
-                                    newApple2.className = 'fruitImg';
-                                    rightId.appendChild(newApple2);
-                                    let newBanana2 = document.createElement('img');
-                                    newBanana2. src = 'img/banana.png';
-                                    newBanana2.className = 'fruitImg';
-                                    rightId.appendChild(newBanana2);
-                                    let newOrange2 = document.createElement('img');
-                                    newOrange2. src = 'img/orange.png';
-                                    newOrange2.className = 'fruitImg';
-                                    rightId.appendChild(newOrange2);
-                                }
+    if (currentLevel == level[1]){
+        rightId.appendChild(apple);
+
+        } else  if (currentLevel == level[2]){
+            rightId.appendChild(banana);
+
+            } else  if (currentLevel == level[3]){
+                rightId.appendChild(banana2);
+                rightId.appendChild(orange);
+
+                } else  if (currentLevel == level[4]){
+                    rightId.appendChild(newApple);
+                    rightId.appendChild(newOrange);
+
+                    } else  if (currentLevel == level[5]){
+                        rightId.appendChild(newApple2);
+                        rightId.appendChild(newBanana2);
+                        rightId.appendChild(newOrange2);
+                    }
         //message condition
         currentLevel !== level[5] ? mainMessage.innerText = `Good job! You found it!` : wonGame();
         //if passed conditions above--> go to next lvl
@@ -228,7 +205,6 @@ removeFruit = () => {
         for (guessedItems of items) {
             // console.log(guessedItems)
             guessedItems.classList.add('hidden');
-            // guessedItems.parentNode.removeChild(guessedItems);
         }
     }
 }
@@ -281,3 +257,31 @@ boxes.forEach(box => box.addEventListener('click', choseBox))
 
 
 
+let apple = document.createElement('img');
+    apple.className = 'fruitImg';
+    apple. src = 'img/apple.png';
+let banana = document.createElement('img');
+    banana. src = 'img/banana.png';
+    banana.className = 'fruitImg';
+let banana2 = document.createElement('img');
+    banana2. src = 'img/banana.png';
+    banana2.className = 'fruitImg';
+let orange = document.createElement('img');
+    orange. src = 'img/orange.png';
+    orange.className = 'fruitImg';
+let newApple = document.createElement('img');
+    newApple. src = 'img/apple.png';
+    newApple.className = 'fruitImg';                      
+let newOrange = document.createElement('img');
+    newOrange. src = 'img/orange.png';
+    newOrange.className = 'fruitImg';
+let newApple2 = document.createElement('img');
+    newApple2. src = 'img/apple.png';
+    newApple2.className = 'fruitImg';
+let newBanana2 = document.createElement('img');
+    newBanana2. src = 'img/banana.png';
+    newBanana2.className = 'fruitImg';
+let newOrange2 = document.createElement('img');
+    newOrange2. src = 'img/orange.png';
+    newOrange2.className = 'fruitImg';
+                                
