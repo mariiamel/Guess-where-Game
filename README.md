@@ -10,7 +10,7 @@
 
 
 ## Summary of the game
-An exiting game where you need to guess in which box the item is hidden. Do not waste time - rather start playing right now.
+A game where you need to guess in which box the item is hidden. Do not waste time - rather start playing right now.
 Currently not mobile friendly, may be in the future.
 
 
