@@ -1,7 +1,7 @@
 
 /* Constants */
 const INITIAL_TIME = 30;
-// varaible store timer's countdown
+// variable store timer's countdown
 let timeRemaining = 0
 // store our timer's setInterval so we can clear it
 let countdown = null
@@ -11,6 +11,10 @@ let placeToHide2 = null;
 let placeToHide3 = null;
 //boolean for gameOver
 let gameOver = false
+let openedBox = false
+let openedBox2 = false
+let openedBox3 = false
+let openedBox4 = false
 
 let level = [0, 1, 2, 3, 4, 5];
 let attempts = [2, 2, 2, 3, 3];
@@ -19,7 +23,7 @@ let amountItemsToGuess = [1, 1, 2, 2, 3];
 let nameOfItemsToGuess = ['apple', 'banana', 'orange']
 let itemsToGuess = ['img/apple.png', 'img/banana.png', 'img/orange.png'] 
 
-//variab for each lvl
+//variable for each lvl
 let currentLevel = 0;
 let currentAttempts = 0;
 let currentBoxesPerLevel = 0;
@@ -46,7 +50,7 @@ initialize = () => {
     nextLevel();
 }
 
-//lists all levels(with contitions on each lvl)
+//lists all levels(with conditions on each lvl)
 nextLevel = () => {
     removeFruit();
     boxes.forEach(box => box.src = 'img/closed-box.png')
@@ -65,12 +69,12 @@ nextLevel = () => {
         if (currentLevel === level[0]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[0]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-            // randomPlaceToHide();
+            randomPlaceToHide();
             
         } else if (currentLevel === level[1]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-            // randomPlaceToHide();
+            randomPlaceToHide();
             
             //create newBox
             let fourthBox = document.createElement('img');
@@ -90,14 +94,14 @@ nextLevel = () => {
         } else  if (currentLevel === level[2]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-            // randomPlaceToHide();
-            // randomPlaceToHide2();
+            randomPlaceToHide();
+            randomPlaceToHide2();
             
         } else  if (currentLevel === level[3]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]}?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-            // randomPlaceToHide();
-            // randomPlaceToHide2();
+            randomPlaceToHide();
+            randomPlaceToHide2();
 
             //create newBox
             let fifthBox = document.createElement('img');
@@ -117,9 +121,9 @@ nextLevel = () => {
         } else  if (currentLevel === level[4]){
             mainMessage.innerText = `Guess where is ${nameOfItemsToGuess[0]} , ${nameOfItemsToGuess[1]} and ${nameOfItemsToGuess[2]} ?`
             attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-            // randomPlaceToHide();
-            // randomPlaceToHide2();
-            // randomPlaceToHide3();
+            randomPlaceToHide();
+            randomPlaceToHide2();
+            randomPlaceToHide3();
 
             // create newBox
             let sixthBox = document.createElement('img');
@@ -131,132 +135,123 @@ nextLevel = () => {
             sixthBox.addEventListener('click', choseBox)
             boxes.forEach(box => box.src = 'img/closed-box.png')
             //newPlaceTo Hide
-            let fifhPlaceToHide = document.createElement('div');
-            fifhPlaceToHide.className = 'itemsToGuess';
-            fifhPlaceToHide.id = 'place5';
-            guessedItemsDiv.appendChild(fifhPlaceToHide);
+            let fifthPlaceToHide = document.createElement('div');
+            fifthPlaceToHide.className = 'itemsToGuess';
+            fifthPlaceToHide.id = 'place5';
+            guessedItemsDiv.appendChild(fifthPlaceToHide);
         }
     currentLevel += 1;
-    randomPlaceToHide();
+    // randomPlaceToHide();
 }
 
-//function chosing the box
+//function choosing the box
 function choseBox(e) {
     e.target.src = 'img/opened-box.png'
     currentAttempts -= 1; 
     attemptsMsg.innerText = `You have ${currentAttempts} attempts`
-    
+  
     let boxId = e.target.id.slice(-1);
+    let boxId2 = e.target.id.slice(-1);
+    let boxId3 = e.target.id.slice(-1);
     e.target.id.innerText = boxId;
 
-    if (boxId == placeToHide) {      
+    if (boxId == placeToHide || boxId == placeToHide2 || boxId == placeToHide3 || boxId2 == placeToHide || boxId2 == placeToHide2 || boxId2 == placeToHide3 || boxId3 == placeToHide || boxId3 == placeToHide2 || boxId3 == placeToHide3) {      
         let rightId = document.querySelector('#place' + placeToHide);
-    
-    if (currentLevel == level[1]){
-        rightId.appendChild(apple);
-        console.log(rightId);
+        let rightId2 = document.querySelector('#place' + placeToHide2);
+        let rightId3 = document.querySelector('#place' + placeToHide3);
+        //  console.log(rightId3, '🥪')
+        
+        if (currentLevel == level[1]){
+            rightId.appendChild(apple);
+            console.log(rightId);
+            setTimeout(nextLevel, 1500);
         } else  if (currentLevel == level[2]){
             rightId.appendChild(banana);
             console.log(rightId);
-            } else  if (currentLevel == level[3]){
-                rightId.appendChild(banana2);
-                rightId.appendChild(orange);
-                console.log(rightId);
-                } else  if (currentLevel == level[4]){
-                    rightId.appendChild(newApple);
-                    rightId.appendChild(newOrange);
+            setTimeout(nextLevel, 1500);
 
-                    } else  if (currentLevel == level[5]){
+
+        } else  if (currentLevel == level[3]){
+            if (boxId == placeToHide){
+                rightId.appendChild(banana2);
+                openedBox = true
+            } else {
+                rightId2.appendChild(orange);
+                openedBox2 = true
+            }
+            if (openedBox == true && openedBox2 == true){
+                setTimeout(nextLevel, 1500);
+            }
+
+
+            } else  if (currentLevel == level[4]){
+                if (boxId == placeToHide){
+                    rightId.appendChild(newApple);
+                    openedBox3 = true
+                } else {
+                    rightId2.appendChild(newOrange);
+                    openedBox4 = true
+                }
+                if (openedBox3 == true && openedBox4 == true){
+                    setTimeout(nextLevel, 1500);
+                }
+
+
+
+                } else  if (currentLevel == level[5]){
+                    if (boxId == placeToHide){
                         rightId.appendChild(newApple2);
-                        rightId.appendChild(newBanana2);
-                        rightId.appendChild(newOrange2);
+                        openedBox5 = true
+                    } else if (boxId2 == placeToHide2){
+                        rightId2.appendChild(newBanana2);
+                        openedBox6 = true
+                    } else {
+                        rightId3.appendChild(newOrange2);
+                        openedBox7 = true
                     }
+
+                    // if (openedBox == true && openedBox2 == true && openedBox3 == true){
+                    //     // setTimeout(nextLevel, 1500);
+                    //     openedBox = true
+                    //     openedBox2 = true
+                    //     openedBox3 = true
+                    // }
+
+                }
         //message condition
         currentLevel !== level[5] ? mainMessage.innerText = `Good job! You found it!` : wonGame();
         //if passed conditions above--> go to next lvl
-        setTimeout(nextLevel, 1500);
+        // setTimeout(nextLevel, 1500);
         //endGame conditions
         } else if (timeRemaining == 0 || currentAttempts === 0 && boxId !== placeToHide) {
             endGame()
         }
 }
 
-// //function chosing the box
-// function choseBox(e) {
-//     e.target.src = 'img/opened-box.png';
-//     currentAttempts -= 1; 
-//     attemptsMsg.innerText = `You have ${currentAttempts} attempts`;
-    
-//     let boxId = e.target.id.slice(-1);
-//     e.target.id.innerText = boxId;
 
 
-//         if (currentLevel == level[1]){
-//             if (boxId == placeToHide) {      
-//                 let rightId = document.querySelector('#place' + placeToHide);
-//                 rightId.appendChild(apple);
-//             } setTimeout(nextLevel, 1500);
-
-//          } else  if (currentLevel == level[2]){
-//             if (boxId == placeToHide) {      
-//                 rightId = document.querySelector('#place' + placeToHide);
-//                 rightId.appendChild(banana);
-//             } setTimeout(nextLevel, 1500);
-
-//                 } else if (currentLevel == level[3]){
-//                     if (boxId == placeToHide) {      
-//                         rightId = document.querySelector('#place' + placeToHide);
-//                         rightId.appendChild(banana2);
-//                         if (boxId == placeToHide2) {      
-//                             let rightId2 = document.querySelector('#place' + placeToHide2);
-//                             rightId2.appendChild(orange);
-//                         } setTimeout(nextLevel, 1500);
-//                     }
-//                 } else  if (currentLevel == level[4]){
-//                     if (boxId == placeToHide) {      
-//                         rightId = document.querySelector('#place' + placeToHide);
-//                         rightId.appendChild(newApple);
-//                             if (boxId == placeToHide2) {      
-//                                 rightId2 = document.querySelector('#place' + placeToHide2);    
-//                                 rightId2.appendChild(newOrange);
-//                             } setTimeout(nextLevel, 1500);
-//                         }
-//                     } else if (currentLevel == level[5]) {
-//                         if (boxId == placeToHide) {      
-//                             rightId = document.querySelector('#place' + placeToHide);      
-//                             rightId.appendChild(newApple2);
-//                             if (boxId == placeToHide2) {      
-//                                 rightId2 = document.querySelector('#place' + placeToHide2); 
-//                                 rightId2.appendChild(newBanana2);
-//                                 if (boxId == placeToHide3){
-//                                     let rightId3 = document.querySelector('#place' + placeToHide3);    
-//                                     rightId3.appendChild(newOrange2);
-//                                 }
-//                             }
-//                         } 
-//         //message condition
-//         currentLevel !== level[5] ? mainMessage.innerText = `Good job! You found it!` : wonGame();
-//         //if passed conditions above--> go to next lvl
-//         // setTimeout(nextLevel, 1500);
-
-//         //endGame conditions
-//         } else if (timeRemaining == 0 || currentAttempts === 0 && boxId !== placeToHide) {
-//             endGame()
-//         }
-// }
-
- randomPlaceToHide = () => {
+randomPlaceToHide = () => {
     placeToHide = Math.floor(Math.random() * currentBoxesPerLevel);
-    console.log('placeToHide',placeToHide);
- }
-//  randomPlaceToHide2 = () => {
-//     placeToHide2 = Math.floor(Math.random() * currentBoxesPerLevel);
-//     console.log('placeToHide',placeToHide2);
-//  }
-//  randomPlaceToHide3 = () => {
-//     placeToHide3 = Math.floor(Math.random() * currentBoxesPerLevel);
-//     console.log('placeToHide',placeToHide3);
-//  }
+    console.log('placeToHide', placeToHide);
+}
+
+randomPlaceToHide2 = () => {
+    placeToHide2 = Math.floor(Math.random() * currentBoxesPerLevel);
+    console.log('placeToHide2 ', placeToHide2);
+    if (placeToHide2 === placeToHide){
+        randomPlaceToHide2()
+        console.log('changed2')
+    }
+}
+
+randomPlaceToHide3 = () => {
+    placeToHide3 = Math.floor(Math.random() * currentBoxesPerLevel);
+    console.log('placeToHide3' ,placeToHide3);
+    if (placeToHide3 === placeToHide || placeToHide3 === placeToHide2){
+        randomPlaceToHide3()
+        console.log('changed place3')
+    }
+}
  
 
 removeFruit = () => {
