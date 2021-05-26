@@ -11,8 +11,7 @@
 
 ## Summary of the game
 A game where you need to guess in which box the item is hidden. Do not waste time - rather start playing right now.
-Currently not mobile friendly, may be in the future.
-
+Live: https://mariiamel.github.io/ 
 
 ## Game rules
 1. Guess the correct box to increase the level
@@ -21,16 +20,14 @@ Currently not mobile friendly, may be in the future.
 
 
 ## Wireframes
-![Initial view of game](./Wireframes/first.png) 
-Initial view of game
-![You found an item on 1st level](./Wireframes/second.png)
+![You found an item on 1st level](./Wireframes/wirefr-1.png)
 You found an item on 1st level
-![You run out of attempts and didn't guess where the item is](./Wireframes/third.png)
+
+![You run out of attempts and didn't guess where the item is](./Wireframes/wirefr-4.png)
 You run out of attempts and didn't guess where the item is
-![You found 2 items on 3rd level](./Wireframes/fourth.png)
+
+![You found 2 items on 3rd level](./Wireframes/wirefr-3.png)
 You found 2 items on 3rd level
-![You found only 2 items of 3 on 5th level and run out of attempts - lost the game](./Wireframes/fifth.png)
-You found only 2 items of 3 on 5th level and run out of attempts - lost the game
 
 
 ## User stories

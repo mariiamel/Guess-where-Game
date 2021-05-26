@@ -3,7 +3,7 @@
 body {
     background: url(bg.webp) no-repeat;
     background-size: cover;
-    /* background-position: center; */
+    background-position: center;
     text-align: center;
     font-family: 'Noto Sans', sans-serif;
 }
